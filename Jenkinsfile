@@ -33,7 +33,7 @@ pipeline {
         stage('Docker image mariadb') {
             steps {
                 
-                powershell " cd .\\mariadb && docker build -t msrinivascharan/mariadb:${BUILD_NUMBER} ."
+                powershell " cd .\\mariadb; docker build -t msrinivascharan/mariadb:${BUILD_NUMBER} ."
                
             }
         }
