@@ -14,17 +14,22 @@ spec:
       labels:
         app: mediawiki
     spec:
-      #volumes:
-        #- name: config-volume
-          #configMap:
-            #name: mediawiki-localsettings
+      initContainers:
+      - name: wait-for-1min
+        image: busybox
+        command: ['sh', '-c', 'sleep 20']
       containers:
         - name: mediawiki
           image: msrinivascharan/mediawiki:v1
-          #volumeMounts:
-            #- name: config-volume
-              #mountPath: /var/www/html/LocalSettings.php
-              #subPath: LocalSettings.php
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                -  /bin/sh
+                - -c
+                - |
+                  php ./maintenance/install.php --dbtype=mysql --dbserver=mariadb-service --dbname=wikidatabase --dbuser=root --dbpass=secret --dbport=3306 --server=http://localhost:31665 --scriptpath=/w --lang=en --pass=admin@123admin "twiki" admin
+                  #tail -f /dev/null
           env:
             - name: MW_DB_HOST
               value: "mariadb-service"
