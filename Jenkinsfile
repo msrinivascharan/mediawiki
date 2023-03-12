@@ -40,6 +40,12 @@ pipeline {
             }
         }
 
+        stage('Deploy mediawiki to K8s cluster') {
+            steps {
+                powershell "helm --install upgrade mediawiki  ./mediawikichart --set mariadb.image=msrinivascharan/mariadb:${BUILD_NUMBER}" --set mediawiki.image=msrinivascharan/mediawiki:${BUILD_NUMBER}"
+            }
+        }
+
        
     }
 }

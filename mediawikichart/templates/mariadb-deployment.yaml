@@ -14,7 +14,7 @@ spec: # specification for deployment resource
     spec: # specification for pods
       containers: # we can have one or more containers
       - name: mariadb
-        image: msrinivascharan/mariadb:v1
+        image: {{ .Values.mariadb.image }}
         ports:
         - containerPort: 3306 
         env:

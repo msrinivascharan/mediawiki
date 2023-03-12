@@ -1,0 +1,5 @@
+mariadb:
+  image: msrinivascharan/mariadb
+
+mediawiki:
+  image: msrinivascharan/mediawiki
