@@ -19,7 +19,7 @@ CI pipeline created in Jenkins to build Hello World app with below tasks.
 4] Build mariadb image
 5] Publish mariadb image to Docker hub
 6] Installing mariadb and Mediawiki using helm chart by providing required inputs
-7] Open http://localhost: to see mediawiki home page, you can login with admin credentials and create wiki pages
+7] Open http://localhost:31665/w/index.php/Main_Page to see mediawiki home page, you can login with admin credentials and create wiki pages
 
 Note:
 Issues, WIP
