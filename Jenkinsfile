@@ -17,9 +17,9 @@ pipeline {
        
         stage('Docker image mediawiki') {
             steps {
-                powershell "cd mediawiki"
+                dir('mediawiki') {
                 powershell "docker build -t msrinivascharan/mediawiki:${BUILD_NUMBER} ."
-                powershell "cd .."
+                }
             }
         }
 
@@ -32,9 +32,9 @@ pipeline {
 
         stage('Docker image mariadb') {
             steps {
-                powershell "cd mariadb"
+                dir('mariadb') {
                 powershell "docker build -t msrinivascharan/mariadb:${BUILD_NUMBER} ."
-                powershell "cd .."
+               }
             }
         }
 
