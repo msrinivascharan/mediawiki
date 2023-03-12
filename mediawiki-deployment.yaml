@@ -20,7 +20,7 @@ spec:
             #name: mediawiki-localsettings
       containers:
         - name: mediawiki
-          image: mediawiki:latest
+          image: msrinivascharan/mediawiki:v1
           #volumeMounts:
             #- name: config-volume
               #mountPath: /var/www/html/LocalSettings.php
