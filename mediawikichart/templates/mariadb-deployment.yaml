@@ -15,6 +15,7 @@ spec: # specification for deployment resource
       containers: # we can have one or more containers
       - name: mariadb
         image: {{ .Values.mariadb.image }}
+        imagePullPolicy: Always
         ports:
         - containerPort: 3306 
         env:

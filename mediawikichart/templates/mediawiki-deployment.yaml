@@ -21,6 +21,7 @@ spec:
       containers:
         - name: mediawiki
           image: {{ .Values.mediawiki.image }}
+          imagePullPolicy: Always
           lifecycle:
             postStart:
               exec:
