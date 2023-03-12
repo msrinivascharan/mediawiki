@@ -18,14 +18,14 @@ pipeline {
         stage('Docker image mediawiki') {
             steps {
                 dir('/mediawiki') {
-                powershell "docker build -t msrinivascharan/mediawiki:${BUILD_NUMBER} ."
+                bat 'docker build -t msrinivascharan/mediawiki:${BUILD_NUMBER} .'
                 }
             }
         }
 
         stage('Docker publish mediawiki') {
             steps {
-                powershell "docker push msrinivascharan/mediawiki:${BUILD_NUMBER}"
+                bat 'docker push msrinivascharan/mediawiki:${BUILD_NUMBER}'
             }
         }
 
@@ -33,20 +33,20 @@ pipeline {
         stage('Docker image mariadb') {
             steps {
                 dir('/mariadb') {
-                powershell "docker build -t msrinivascharan/mariadb:${BUILD_NUMBER} ."
+                bat 'docker build -t msrinivascharan/mariadb:${BUILD_NUMBER} .'
                }
             }
         }
 
         stage('Docker publish mariadb') {
             steps {
-                powershell "docker push msrinivascharan/mariadb:${BUILD_NUMBER}"
+                bat 'docker push msrinivascharan/mariadb:${BUILD_NUMBER}'
             }
         }
 
         stage('Deploy mediawiki to K8s cluster') {
             steps {
-                powershell "helm upgrade --install  mediawiki  ./mediawikichart --set mariadb.image=msrinivascharan/mariadb:${BUILD_NUMBER} --set mediawiki.image=msrinivascharan/mediawiki:${BUILD_NUMBER}"
+                bat 'helm upgrade --install  mediawiki  ./mediawikichart --set mariadb.image=msrinivascharan/mariadb:${BUILD_NUMBER} --set mediawiki.image=msrinivascharan/mediawiki:${BUILD_NUMBER}'
             }
         }
 
