@@ -29,7 +29,7 @@ spec:
                 -  /bin/sh
                 - -c
                 - |
-                  php ./maintenance/install.php --dbtype=mysql --dbserver=mariadb-service --dbname=wikidatabase --dbuser=root --dbpass=secret --dbport=3306 --server=http://localhost:31665 --scriptpath=/w --lang=en --pass=admin@123admin "twiki" admin
+                  php ./maintenance/install.php {{ .Values.mediawiki.install }}
                   #tail -f /dev/null
           env:
             - name: MW_DB_HOST
